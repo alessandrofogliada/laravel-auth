@@ -11,3 +11,11 @@ header,aside{
 li{
     list-style: none;
 }
+
+.main-wrapper{
+    height: calc(100vh - 56px);
+}
+
+aside{
+    width: 150px;
+}

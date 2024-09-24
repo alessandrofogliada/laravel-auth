@@ -1,17 +1,9 @@
 {{-- qui è dove inseriremo tutto il codice per la barra verticale a sinistra  --}}
 
-<div class="container text-bg-dark col-1 ">
-    <h2>Aside bar</h2>
+<aside class="text-bg-dark main-wrapper">
     <ul>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
-        <li>Prova colonna</li>
+        <a href="{{ route('admin.home')}}">Home</a>
+        <a href="{{ route('admin.posts.index')}}">Elenco Post</a>
+        <a>Nuovo Post</a>
     </ul>
-</div>
+</aside>

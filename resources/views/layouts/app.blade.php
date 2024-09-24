@@ -16,9 +16,12 @@
 
 <body>
 @include('admin.partials.header')
-@yield('content')
-@include('admin.partials.aside')
-@include('admin.partials.footer')
+<div class="d-flex">
+    @auth
+        @include('admin.partials.aside')
+    @endauth
+    @yield('content')
+</div>
 </body>
 
 </html>

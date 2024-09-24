@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as ControllersDashboardController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Guest\PageController;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\Guest\PageController;
 
 Route::get('/' , [PageController::class , 'index'])->name('home');
 
+Route::resource('admin' , AdminController::class);
 
 Route::middleware(['auth' ,'verified'])
     ->prefix('admin') 
