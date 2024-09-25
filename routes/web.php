@@ -24,13 +24,7 @@ Route::resource('admin' , PostController::class);
 
 Route::get('admin/posts/{id}', [PostController::class, 'show'])->name('admin.posts.show');
 
-// Route::get('admin/posts/{id}', [PostController::class, 'edit'])->name('admin.posts.edit');
-Route::middleware('auth')
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-    Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
-});
+Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
 
 
 Route::middleware('auth')

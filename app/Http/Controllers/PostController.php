@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 class PostController extends Controller
@@ -49,15 +50,20 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         
-        return view('admin.post.edit' , compact('post'));
+        return view('admin.posts.edit' , compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show' ,$post->id);
+
     }
 
     /**
