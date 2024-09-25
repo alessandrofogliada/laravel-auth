@@ -26,6 +26,8 @@ Route::get('admin/posts/{id}', [PostController::class, 'show'])->name('admin.pos
 
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
 
+Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+
 
 Route::middleware('auth')
         ->prefix('profile')
