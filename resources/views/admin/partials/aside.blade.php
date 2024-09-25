@@ -2,8 +2,8 @@
 
 <aside class="text-bg-dark main-wrapper">
     <ul>
-        <a href="{{ route('admin.home')}}">Home</a>
-        <a href="{{ route('admin.posts.index')}}">Elenco Post</a>
-        <a>Nuovo Post</a>
+        <li><a href="{{ route('admin.index')}}">Home</a></li>
+        <li><a href="{{ route('admin.index')}}">Elenco Posts</a></li>
+        <li><a>Nuovo Post</a></li>
     </ul>
 </aside>

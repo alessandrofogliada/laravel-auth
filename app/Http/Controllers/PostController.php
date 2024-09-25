@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
-class AdminController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('id' , 'desc')->get();
+        $posts = Post::all();
 
-        return view('admin.posts.index', compact('posts'));
-        dump($posts);
+        return view('admin.posts.index' , compact('posts'));
     }
 
     /**
@@ -39,7 +37,9 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('admin.posts.show' , compact('post'));
     }
 
     /**
@@ -47,7 +47,9 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        
+        return view('admin.post.edit' , compact('post'));
     }
 
     /**

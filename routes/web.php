@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as ControllersDashboardController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Guest\PageController;
 
 /*
@@ -20,14 +20,18 @@ use App\Http\Controllers\Guest\PageController;
 
 Route::get('/' , [PageController::class , 'index'])->name('home');
 
-Route::resource('admin' , AdminController::class);
+Route::resource('admin' , PostController::class);
 
-Route::middleware(['auth' ,'verified'])
-    ->prefix('admin') 
-    ->name('admin.') 
-    ->group(function(){
-        Route::get('/' , [DashboardController::class, 'index'])->name('home');
-    });
+Route::get('admin/posts/{id}', [PostController::class, 'show'])->name('admin.posts.show');
+
+// Route::get('admin/posts/{id}', [PostController::class, 'edit'])->name('admin.posts.edit');
+Route::middleware('auth')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+    Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
+});
+
 
 Route::middleware('auth')
         ->prefix('profile')
@@ -36,13 +40,6 @@ Route::middleware('auth')
             Route::get('/' , [ProfileController::class , 'edit'])->name('edit');
             Route::get('/' , [ProfileController::class , 'update'])->name('update');
             Route::get('/' , [ProfileController::class , 'destroy'])->name('destroy');
-        });
-
-Route::middleware('auth')
-        ->prefix('dashboard')
-        ->name('dashboard.')
-        ->group(function(){
-            Route::get('/' , [DashboardController::class , 'index'])->name('home');
         });
 
 require __DIR__.'/auth.php';
