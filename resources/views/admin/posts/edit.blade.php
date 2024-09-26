@@ -7,7 +7,8 @@
 <h4>Modifica del Post: {{ $post->title }}</h4>
 
     <div class="d-flex flex-column">
-        <form action="{{ route('admin.update' ,$post->id)}}" method="POST">
+        <form action="{{ route('admin.posts.update' ,$post->id)}}" method="POST">
+            
             @csrf
             @method('PUT')
 

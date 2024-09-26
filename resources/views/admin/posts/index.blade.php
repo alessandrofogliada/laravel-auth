@@ -22,6 +22,13 @@
             <td><a href="{{ route('admin.posts.show' , $post)}}" type="button" class="btn btn-warning">Dettagli</a>
             </td>
             <td><a href="{{ route('admin.posts.edit' , $post)}}" type="button" class="btn btn-info">Modifica</a></td>
+            <td>
+              <form action="{{ route('admin.posts.destroy' , $post->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Cancella" class="btn btn-danger">
+              </form>
+            </td>
           </tr>
           @endforeach
         </tbody>
