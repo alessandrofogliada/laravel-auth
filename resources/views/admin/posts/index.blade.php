@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Elenco post</h1>
+
+<div class="container">
+
+  <h1>Elenco post</h1>
+
+  @if (session('delete'))
+    <div class="alert alert-success">
+      {{session('message')}}
+    </div>
+  @endif
 
     <table class="table">
         <thead>
@@ -23,14 +32,21 @@
             </td>
             <td><a href="{{ route('admin.posts.edit' , $post)}}" type="button" class="btn btn-info">Modifica</a></td>
             <td>
-              <form action="{{ route('admin.posts.destroy' , $post->id)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="Cancella" class="btn btn-danger">
-              </form>
+              @include('admin.partials.formdelete' , [
+                'route'=>route('admin.posts.destroy' , $post),
+                'message'=>"confermi di voler eleminare il post: . $post->title . ?",
+              ])
             </td>
           </tr>
           @endforeach
         </tbody>
+        
       </table>
+
+      {{$posts->links()}}
+
+
+</div>
+    
+       
 @endsection

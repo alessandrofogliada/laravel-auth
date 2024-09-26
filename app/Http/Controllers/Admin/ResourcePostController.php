@@ -14,7 +14,7 @@ class ResourcePostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id' ,'desc')->paginate(15);
 
         return view('admin.posts.index' , compact('posts'));
     }
@@ -84,6 +84,6 @@ class ResourcePostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('delete' , 'il post' . $post->title . 'è stato eliminato correttamente.');
     }
 }
